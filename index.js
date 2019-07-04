@@ -10,6 +10,10 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.get( '/', function ( req, res ) {
+    res.send( "Faxinapp" );
+});
+
 app.post('/share/', function (req, res) {
 
     if (req.header('api_key') === secrets.api_key ) {
@@ -46,15 +50,16 @@ app.get('/obtain/:id', function (req, res) {
     }
 });
 
-app.listen(3000, function () {
+const server = app.listen( process.env.PORT || 8080, function () {
     var dir = 'shared';
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
     }
-
+    
     dir = 'concluded';
-
+    
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
     }
+    console.log('http://' + server.address().address +":"+ server.address().port);
 });
