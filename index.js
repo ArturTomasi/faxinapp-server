@@ -51,14 +51,18 @@ app.get('/obtain/:id', function (req, res) {
 });
 
 app.get('/helper/', function (req, res) {
-    var data = {
-        sever : __dirname
-    };
+
+    var array = [];
+    
+    fs.readdirSync( "shared").forEach( function( file ) {
+        array.push( file);
+    });
+    
+    var data = { "shared" : array };
 
     res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.end(JSON.stringify(data));
-
-});
+} );
 
 
 const server = app.listen(process.env.PORT || 8080, function () {
