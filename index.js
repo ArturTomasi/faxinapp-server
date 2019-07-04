@@ -3,7 +3,7 @@ var app = express();
 var fs = require('fs');
 var bodyParser = require('body-parser');
 
-var key = "xxxxx";
+var secrets = require( './secrets.json' );
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({
 
 app.post('/share/', function (req, res) {
 
-    if (req.header('api_key') === key) {
+    if (req.header('api_key') === secrets.api_key ) {
         var product = req.body;
 
         fs.writeFile('./shared/' + product.uuid + ".json", JSON.stringify(product), "utf8", function () {
@@ -26,7 +26,7 @@ app.post('/share/', function (req, res) {
 
 app.get('/obtain/:id', function (req, res) {
 
-    if (req.header('api_key') === key) {
+    if (req.header('api_key') === secrets.api_key ) {
         var uuid = req.params.id;
         var path = './shared/' + uuid + '.json';
 
