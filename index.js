@@ -52,17 +52,23 @@ app.get('/obtain/:id', function (req, res) {
 
 app.get('/helper/', function (req, res) {
 
-    var array = [];
-    
-    fs.readdirSync( "shared").forEach( function( file ) {
-        array.push( file);
+    var shared = [];
+
+    fs.readdirSync("shared").forEach(function (file) {
+        shared.push(file);
     });
-    
-    var data = { "shared" : array };
+
+    var concluded = [];
+
+    fs.readdirSync("shared").forEach(function (file) {
+        shared.push(concluded);
+    });
+
+    var data = { "shared": shared, "concluded": concluded };
 
     res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.end(JSON.stringify(data));
-} );
+});
 
 
 var server = app.listen(process.env.PORT || 8080, function () {
