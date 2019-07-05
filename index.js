@@ -65,7 +65,7 @@ app.get('/helper/', function (req, res) {
 } );
 
 
-const server = app.listen(process.env.PORT || 8080, function () {
+var server = app.listen(process.env.PORT || 8080, function () {
     var dir = 'shared';
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
