@@ -1,2 +1,0 @@
-# faxinapp-server
-faxinapp-sever
