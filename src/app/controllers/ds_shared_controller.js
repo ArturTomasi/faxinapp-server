@@ -1,9 +1,8 @@
 const { Datastore } = require('@google-cloud/datastore');
+const PATH = 'shared';
 
 class CleaningController {
-
-    static PATH = 'shared';
-
+    
     constructor() {
         this.database = new Datastore();
     }

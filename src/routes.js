@@ -2,20 +2,11 @@ const Router = require('express').Router;
 const routes = new Router();
 
 const SecurityManager = require('./app/middlewares/security_manager');
-const SharedController, DoneController;
 
-if ( process.env.DATABASE_TYPE === 'mongo_db' )
-{
-    SharedController = require('./app/controllers/md_shared_controller');
-    DoneController  = require('./app/controllers/md_done_controller');
-}
+const prefix = process.env.DATABASE_TYPE === 'mongo_db' ? 'md' : 'ds'; 
 
-else 
-{
-    SharedController = require('./app/controllers/ds_shared_controller');
-    DoneController  = require('./app/controllers/ds_done_controller');
-}
-
+const SharedController = require( `./app/controllers/${prefix}_shared_controller`);
+const DoneController = require(`./app/controllers/${prefix}_done_controller`);
 
 /**
  * R O U T E S     H T M L

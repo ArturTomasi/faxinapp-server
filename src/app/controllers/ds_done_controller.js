@@ -1,8 +1,8 @@
 const { Datastore } = require('@google-cloud/datastore');
+const PATH = 'dones';
 
 class DoneController {
 
-    static PATH = 'dones';
 
     constructor() {
         this.database = new Datastore();
