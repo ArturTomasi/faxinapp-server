@@ -1,19 +1,15 @@
 const { Datastore } = require('@google-cloud/datastore');
+const database = new Datastore();
+
 const PATH = 'dones';
 
 class DoneController {
-
-
-    constructor() {
-        this.database = new Datastore();
-    }
-
     async done(req, res) {
         try {
             var entity = req.body;
-            entity.key = await this.database.key([PATH, req.params.id]);
+            entity.key = await database.key([PATH, req.params.id]);
 
-            await this.database.save(entity);
+            await database.save(entity);
 
             res.status(200).json({ message: 'Sucess!' });
         }
@@ -24,7 +20,7 @@ class DoneController {
 
     async obtain(req, res) {
         try {
-            var result = this.database.get(await this.database.key([PATH, req.params.id]));
+            var result = await database.get(await database.key([PATH, req.params.id]));
 
             if (result) {
                 res.status(200).json(result);
@@ -38,7 +34,7 @@ class DoneController {
     }
 
     async all(req, res) {
-        var result = this.database.get(await this.database.key([PATH]));
+        var result = await database.get(await database.key([PATH]));
 
         res.status(200).json(result);
     }
