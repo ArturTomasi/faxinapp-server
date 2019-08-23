@@ -20,7 +20,7 @@ class CleaningController {
 
   async obtain(req, res) {
     try {
-      var result = await database.get(
+      const [result] = await database.get(
         await database.key([PATH, req.params.id])
       );
 
