@@ -4147,3 +4147,21 @@ input, select, textarea {
 		}
 
 	}
+
+.current-image
+{
+	position: absolute !important;
+	-webkit-transition: opacity 1s ease-in-out !important;
+	-moz-transition: opacity 1s ease-in-out !important;
+	-o-transition: opacity 1s ease-in-out !important;
+	transition: opacity 1s ease-in-out !important;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)" !important;
+	filter: alpha(opacity=0) !important;
+	opacity:0 !important;
+}
+
+.opaque{
+	opacity:1 !important;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !important;
+	filter: alpha(opacity=1) !important;
+}
