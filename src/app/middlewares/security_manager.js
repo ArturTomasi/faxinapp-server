@@ -1,12 +1,10 @@
 class SecurityManager {
   hasPermission(req, res, next) {
-    if (req.header("APP_SECRET") === process.env.APP_SECRET) {
+    if (req.header("X-App-Secret") === process.env.APP_SECRET) {
       next();
     } else {
       res.status("401").json({
-        message: "Sem acesso ai API!",
-        key: req.header("APP_SECRET"),
-        process: process.env.APP_SECRET
+        message: "Sem acesso ai API!"
       });
     }
   }
